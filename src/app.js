@@ -1,14 +1,14 @@
-import {
+const {
 	createUser,
 	getUsersById,
 	deleteUsersById,
 	updateUsersById,
-} from "./utils";
-import { getUsers, setUsers } from "./database";
-import serverless from "serverless-http";
-import express from "express";
-import bodyParser from "body-parser";
-import cors from "cors";
+} = require("./utils");
+const { getUsers, setUsers } = require("./database");
+const serverless = require("serverless-http");
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const app = express();
 const router = express.Router();
@@ -42,42 +42,42 @@ router.post("/users", (req, res) => {
 });
 router.put("/users", (req, res) => {
 	const { id, name, age } = req.body;
-    (async () => {
+	(async () => {
 		const dataToReturn = await getUsers();
-		const [updated, data]  = updateUsersById(id, name, age, dataToReturn);
+		const [updated, data] = updateUsersById(id, name, age, dataToReturn);
 		if (updated) {
 			const newData = await setUsers(data);
 			res.send(newData);
-		}else {
-            res.send("User not found");
-        }
+		} else {
+			res.send("User not found");
+		}
 	})();
 });
 router.delete("/user/:id", (req, res) => {
 	const { id } = req.params;
-    (async () => {
+	(async () => {
 		const users = await getUsers();
-		const [deleted, data] = deleteUsersById(id,users);
+		const [deleted, data] = deleteUsersById(id, users);
 		if (deleted) {
 			const newData = await setUsers(data);
 			res.send(newData);
-		}else {
-            res.send("User not found");
-        }
+		} else {
+			res.send("User not found");
+		}
 	})();
 });
 router.get("/user/:id", (req, res) => {
 	const { id } = req.params;
-    (async () => {
-        const dataToReturn = await getUsers();
-        const foundUser = getUsersById(id, dataToReturn);
-        if(foundUser) {
-            res.send(foundUser);
-        } else{
-            res.send("User not found");
-        }
-    })();
+	(async () => {
+		const dataToReturn = await getUsers();
+		const foundUser = getUsersById(id, dataToReturn);
+		if (foundUser) {
+			res.send(foundUser);
+		} else {
+			res.send("User not found");
+		}
+	})();
 });
 
-export { app };
-export const handler = serverless(app);
+module.exports = { app };
+exports.handler = serverless(app);

@@ -1,12 +1,14 @@
-import { v4 as uuidv4 } from 'uuid';
+const { v4  } = require("uuid");
 
-export default function createUser( name, age, data) {
+function createUser( name, age, data) {
 
     const newUser= {
-        id: uuidv4(),
+        id: v4(),
         name: name,
         age: age
     }
     data.push(newUser);
     return data;
 }
+
+module.exports = createUser;

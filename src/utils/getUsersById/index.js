@@ -1,5 +1,4 @@
-
-export default function getUsersById(id, usersArray) {
+function getUsersById(id, usersArray) {
 	let dataToReturn;
 	const user = usersArray.find((user) => user.id === id);
 	if (user) {
@@ -7,5 +6,7 @@ export default function getUsersById(id, usersArray) {
 		return dataToReturn;
 	}
 
-    return false
+	return false;
 }
+
+module.exports = getUsersById;

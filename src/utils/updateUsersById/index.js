@@ -1,4 +1,4 @@
-export default function updateUsersById(id, name, age, usersArray) {
+function updateUsersById(id, name, age, usersArray) {
 	let dataToReturn;
 	const foundUser = usersArray.find((user) => user.id === id);
 	const usersFiltered = usersArray.filter((user) => user.id !== id);
@@ -13,3 +13,6 @@ export default function updateUsersById(id, name, age, usersArray) {
 	}
 	return [(dataToReturn = false)];
 }
+
+
+module.exports  = updateUsersById;

@@ -1,9 +1,5 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = getUsersById;
 function getUsersById(id, usersArray) {
   var dataToReturn;
   var user = usersArray.find(function (user) {
@@ -15,3 +11,4 @@ function getUsersById(id, usersArray) {
   }
   return false;
 }
+module.exports = getUsersById;

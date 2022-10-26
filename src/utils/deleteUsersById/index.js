@@ -1,4 +1,4 @@
-export default function deleteUsersById(id, usersArray) {
+ function deleteUsersById(id, usersArray) {
 	let dataToReturn;
 	const foundUser = usersArray.find((user) => user.id === id);
 	const usersFiltered = usersArray.filter((user) => user.id !== id);
@@ -8,3 +8,6 @@ export default function deleteUsersById(id, usersArray) {
 	}
 	 return [dataToReturn = false];;
 }
+
+
+module.exports = deleteUsersById;

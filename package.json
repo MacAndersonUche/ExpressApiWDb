@@ -2,7 +2,7 @@
   "name": "expressapiwdb",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/src/index.js",
+  "main": "src/index.js",
   "nodemonConfig": {
     "exec": "npm run dev",
     "watch": [
@@ -15,19 +15,13 @@
     ]
   },
   "scripts": {
-    "build": "npm-run-all clean transpile",
-    "start": "node ./dist/index.js",
+    "start": "/node_modules/netlify-lambda/bin serve src",
+    "build": "/node_modules/.bin/netlify-lambda/bin build src",
     "dev": "npm-run-all build start",
-    "transpile": "babel ./src --out-dir dist",
     "clean": "rimraf dist",
     "watch:dev": "nodemon",
     "test": "cross-env NODE_ENV=test mocha",
     "test:watch": "npm test -- -- -w"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ]
   },
   "keywords": [],
   "author": "",
@@ -36,25 +30,17 @@
     "chai": "^4.3.6",
     "mocha": "^10.1.0",
     "nodemon": "^1.19.4",
-    "sinon": "^14.0.1",
-    "source-map-support": "^0.5.19"
+    "sinon": "^14.0.1"
   },
   "dependencies": {
-    "@babel/cli": "^7.19.3",
-    "@babel/core": "^7.19.6",
-    "@babel/preset-env": "^7.19.4",
-    "aws-sdk": "^2.1235.0",
     "better-sqlite3": "^7.6.2",
     "body-parser": "^1.19.0",
     "compression": "^1.6.2",
     "cors": "^2.8.5",
-    "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "netlify-lambda": "^1.6.3",
-    "npm-run-all": "^4.1.5",
+    "express": "^4.16.4",
+    "netlify-lambda": "^1.4.3",
+    "serverless-http": "^1.9.1",
     "quick.db": "^9.0.6",
-    "rimraf": "^3.0.2",
-    "serverless-http": "^2.3.0",
     "uuid": "^9.0.0"
   }
 }

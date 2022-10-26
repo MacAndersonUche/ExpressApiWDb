@@ -1,9 +1,5 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = deleteUsersById;
 function deleteUsersById(id, usersArray) {
   var dataToReturn;
   var foundUser = usersArray.find(function (user) {
@@ -18,3 +14,4 @@ function deleteUsersById(id, usersArray) {
   return [dataToReturn = false];
   ;
 }
+module.exports = deleteUsersById;

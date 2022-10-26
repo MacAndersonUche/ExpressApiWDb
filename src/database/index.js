@@ -1,4 +1,4 @@
-import { QuickDB } from "quick.db";
+const { QuickDB } = require("quick.db");
 const db = new QuickDB();
 
 let usersArray = [
@@ -12,13 +12,12 @@ let usersArray = [
 ];
 
 async function setUsers(user) {
-    try {
-        const data = await db.set("userInfo", user);
-        return data;
-    } catch (error) {
-        console.log(error);
-    }
-
+	try {
+		const data = await db.set("userInfo", user);
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
 }
 
 async function getUsers() {
@@ -31,5 +30,4 @@ async function getUsers() {
 	}
 }
 
-
-export { usersArray, db, getUsers, setUsers };
+module.exports = {  getUsers, setUsers };

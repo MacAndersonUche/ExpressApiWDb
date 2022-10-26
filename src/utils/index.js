@@ -1,9 +1,9 @@
-import createUser from "./createUser";
-import deleteUsersById from "./deleteUsersById";
-import getUsersById from "./getUsersById";
-import updateUsersById from "./updateUsersById";
+const createUser = require("./createUser") ;
+const deleteUsersById = require( "./deleteUsersById");
+const getUsersById = require("./getUsersById") ;
+const updateUsersById = require( "./updateUsersById");
 
-export {
+module.exports =  {
 	createUser,
 	deleteUsersById,
 	getUsersById,
