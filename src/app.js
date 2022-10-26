@@ -43,17 +43,41 @@ app.post("/users", (req, res) => {
 });
 app.put("/users", (req, res) => {
 	const { id, name, age } = req.body;
-	res.send(updateUsersById(id, name, age));
+    (async () => {
+		const dataToReturn = await getUsers();
+		const [updated, data]  = updateUsersById(id, name, age, dataToReturn);
+		if (updated) {
+			const newData = await setUsers(data);
+			res.send(newData);
+		}else {
+            res.send("User not found");
+        }
+	})();
 });
-app.delete("/users/:id", (req, res) => {
+app.delete("/user/:id", (req, res) => {
 	const { id } = req.params;
-	res.send(deleteUsersById(id));
+    (async () => {
+		const users = await getUsers();
+		const [deleted, data] = deleteUsersById(id,users);
+		if (deleted) {
+			const newData = await setUsers(data);
+			res.send(newData);
+		}else {
+            res.send("User not found");
+        }
+	})();
 });
 app.get("/user/:id", (req, res) => {
 	const { id } = req.params;
-    const user = getUsersById(id);
-    console.log(user);
-	res.send(user);
+    (async () => {
+        const dataToReturn = await getUsers();
+        const foundUser = getUsersById(id, dataToReturn);
+        if(foundUser) {
+            res.send(foundUser);
+        } else{
+            res.send("User not found");
+        }
+    })();
 });
 
 export { app };
