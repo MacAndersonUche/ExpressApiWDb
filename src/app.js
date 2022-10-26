@@ -1,5 +1,4 @@
 import {
-	getAllUsers,
 	createUser,
 	getUsersById,
 	deleteUsersById,
@@ -12,25 +11,25 @@ import bodyParser from "body-parser";
 import cors from "cors";
 
 const app = express();
-// const router = express.Router();
+const router = express.Router();
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-// app.use("/.netlify/functions/app", router); // path must route to lambda
+app.use("/.netlify/functions/app", router); // path must route to lambda
 
-app.get("/", (req, res) => {
+router.get("/", (req, res) => {
 	res.writeHead(200, { "Content-Type": "text/html" });
 	res.write("<h1>Up and running</h1>");
 	res.end();
 });
-app.get("/users", (req, res) => {
+router.get("/users", (req, res) => {
 	let dataToReturn;
 	(async () => {
 		dataToReturn = await getUsers();
 		res.send(dataToReturn);
 	})();
 });
-app.post("/users", (req, res) => {
+router.post("/users", (req, res) => {
 	const { name, age } = req.body;
 	(async () => {
 		const dataToReturn = await getUsers();
@@ -41,7 +40,7 @@ app.post("/users", (req, res) => {
 		}
 	})();
 });
-app.put("/users", (req, res) => {
+router.put("/users", (req, res) => {
 	const { id, name, age } = req.body;
     (async () => {
 		const dataToReturn = await getUsers();
@@ -54,7 +53,7 @@ app.put("/users", (req, res) => {
         }
 	})();
 });
-app.delete("/user/:id", (req, res) => {
+router.delete("/user/:id", (req, res) => {
 	const { id } = req.params;
     (async () => {
 		const users = await getUsers();
@@ -67,7 +66,7 @@ app.delete("/user/:id", (req, res) => {
         }
 	})();
 });
-app.get("/user/:id", (req, res) => {
+router.get("/user/:id", (req, res) => {
 	const { id } = req.params;
     (async () => {
         const dataToReturn = await getUsers();

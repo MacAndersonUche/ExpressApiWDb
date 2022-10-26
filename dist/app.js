@@ -22,22 +22,22 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 var app = (0, _express["default"])();
-// const router = express.Router();
 exports.app = app;
+var router = _express["default"].Router();
 app.use((0, _cors["default"])());
 app.use(_bodyParser["default"].urlencoded({
   extended: true
 })); // for parsing application/x-www-form-urlencoded
-// app.use("/.netlify/functions/app", router); // path must route to lambda
+app.use("/.netlify/functions/app", router); // path must route to lambda
 
-app.get("/", function (req, res) {
+router.get("/", function (req, res) {
   res.writeHead(200, {
     "Content-Type": "text/html"
   });
   res.write("<h1>Up and running</h1>");
   res.end();
 });
-app.get("/users", function (req, res) {
+router.get("/users", function (req, res) {
   var dataToReturn;
   _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
     return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -57,7 +57,7 @@ app.get("/users", function (req, res) {
     }, _callee);
   }))();
 });
-app.post("/users", function (req, res) {
+router.post("/users", function (req, res) {
   var _req$body = req.body,
     name = _req$body.name,
     age = _req$body.age;
@@ -89,7 +89,7 @@ app.post("/users", function (req, res) {
     }, _callee2);
   }))();
 });
-app.put("/users", function (req, res) {
+router.put("/users", function (req, res) {
   var _req$body2 = req.body,
     id = _req$body2.id,
     name = _req$body2.name,
@@ -126,7 +126,7 @@ app.put("/users", function (req, res) {
     }, _callee3);
   }))();
 });
-app["delete"]("/user/:id", function (req, res) {
+router["delete"]("/user/:id", function (req, res) {
   var id = req.params.id;
   _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
     var users, _deleteUsersById, _deleteUsersById2, deleted, data, newData;
@@ -160,7 +160,7 @@ app["delete"]("/user/:id", function (req, res) {
     }, _callee4);
   }))();
 });
-app.get("/user/:id", function (req, res) {
+router.get("/user/:id", function (req, res) {
   var id = req.params.id;
   _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
     var dataToReturn, foundUser;

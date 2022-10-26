@@ -5,7 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = createUser;
 var _uuid = require("uuid");
-var _db = require("../../database/db");
 function createUser(name, age, data) {
   var newUser = {
     id: (0, _uuid.v4)(),

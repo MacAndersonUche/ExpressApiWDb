@@ -15,12 +15,6 @@ Object.defineProperty(exports, "deleteUsersById", {
     return _deleteUsersById["default"];
   }
 });
-Object.defineProperty(exports, "getAllUsers", {
-  enumerable: true,
-  get: function get() {
-    return _getAllUsers["default"];
-  }
-});
 Object.defineProperty(exports, "getUsersById", {
   enumerable: true,
   get: function get() {
@@ -35,7 +29,6 @@ Object.defineProperty(exports, "updateUsersById", {
 });
 var _createUser = _interopRequireDefault(require("./createUser"));
 var _deleteUsersById = _interopRequireDefault(require("./deleteUsersById"));
-var _getAllUsers = _interopRequireDefault(require("./getAllUsers"));
 var _getUsersById = _interopRequireDefault(require("./getUsersById"));
 var _updateUsersById = _interopRequireDefault(require("./updateUsersById"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
